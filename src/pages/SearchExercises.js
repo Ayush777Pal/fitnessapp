@@ -1,9 +1,38 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import {Box, Button , Stack , TextField, Typography} from '@mui/material';
-
+import { exerciseOptions, fetchData } from '../utils/fetchData';
 
 const SearchExercises = () => {
+  //when the user typed the input the the data of search and set search will be save inside the search and set search state
+  const [search, setSearch] = useState('');
+  //we can add search exercises in the state so that we can later on use these states
+  const [exercise, setExercisese] = useState([]);
+  const [BodyParts, setBodyParts] = useState([]);
+  useEffect(()=>{
+    const fetchExerciseData = async ()=>{
+      const bodyPartsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList',exerciseOptions);
+      setBodyParts(['all', ...bodyPartsData]);
+      console.log(bodyPartsData);
+    }
+    fetchExerciseData();
+    },[])
+  //handle search will handle the submission of the search exercise box
+  const handleSearch =async ()=>{
+    if(search){
+      //data fetched by api is stored in the exerciseData 
+      const exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises',exerciseOptions);
+      //const searchedExercises = exercisesData.filter(
+       // (exercise) => exercise.name.toLowerCase().includes(search)
+       // || exercise.target.toLowerCase().includes(search)
+       // || exercise.equipment.toLowerCase().includes(search)
+       // || exercise.bodyPart.toLowerCase().includes(search)
+      //)
+      setSearch('');
+      console.log(exercisesData)
+      setExercisese(exercisesData);
+    }
+  }
   return (
     <Stack alignItems="center" mt="37px"
     justifyContent="center" p="20px">
@@ -21,8 +50,9 @@ const SearchExercises = () => {
           borderRadius:'40px'
         }}
         height="76px"
-        value=""
-        onChange={(e)=>{}}
+        //it will take the value written inside the searchbox and put it into the search and setSearch state
+        value={search}
+        onChange={(e)=>setSearch(e.target.value.toLowerCase())}
         placeholder='Search Exercises'
         type='text'>
 
@@ -37,8 +67,13 @@ const SearchExercises = () => {
           height:'56px',
           position:"absolute",
           right:'0'
-        }}>Search
+        }}
+        onClick={handleSearch}
+        >Search
         </Button>
+      </Box>
+      <Box sx={{position:"relative", width:'100%', p:'20px'}}>
+
       </Box>
     </Stack>
   )
