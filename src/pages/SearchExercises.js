@@ -2,13 +2,13 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import {Box, Button , Stack , TextField, Typography} from '@mui/material';
 import { exerciseOptions, fetchData } from '../utils/fetchData';
+import HorizontalScrollbar from '../components/HorizontalScrollbar';
 
-const SearchExercises = () => {
+const SearchExercises = ({setExercises, bodyPart, setBodyPart}) => {
   //when the user typed the input the the data of search and set search will be save inside the search and set search state
   const [search, setSearch] = useState('');
-  //we can add search exercises in the state so that we can later on use these states
-  const [exercise, setExercisese] = useState([]);
-  const [BodyParts, setBodyParts] = useState([]);
+  const [bodyParts, setBodyParts] = useState([]);
+  //useeffect is use to load the bodyPartList from the api
   useEffect(()=>{
     const fetchExerciseData = async ()=>{
       const bodyPartsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList',exerciseOptions);
@@ -30,7 +30,7 @@ const SearchExercises = () => {
       //)
       setSearch('');
       console.log(exercisesData)
-      setExercisese(exercisesData);
+      setExercises(exercisesData);
     }
   }
   return (
@@ -73,7 +73,8 @@ const SearchExercises = () => {
         </Button>
       </Box>
       <Box sx={{position:"relative", width:'100%', p:'20px'}}>
-
+        <HorizontalScrollbar data={bodyParts}
+        bodyPart={bodyPart} setBodyPart={setBodyPart}/>
       </Box>
     </Stack>
   )
