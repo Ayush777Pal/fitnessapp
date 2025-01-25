@@ -4,7 +4,7 @@ import {Box} from '@mui/material'
 import {exerciseOptions, fetchData, youtubeOptions} from '../utils/fetchData'
 import Details from '../components/Details'
 import ExerciseVideos from '../components/ExerciseVideos'
-import SimilarExercise from '../components/SimilarExercise'
+import SimilarExercises from '../components/SimilarExercise'
 
 const ExerciseDetails = () => {
   const [exerciseDetail, setExerciseDetail] = useState({});
@@ -27,11 +27,11 @@ const ExerciseDetails = () => {
       const exerciseVideoData = await fetchData(`${youtubeSearchUrl}/search?query=${exerciseDetailData.name}exercise`,youtubeOptions)
       setExerciseVideos(exerciseVideoData.contents);
 
-      const targetMuscleExerciseData = await fetchData(`${exerciseDbUrl}/exercises/target/${exerciseDetailData.target}`,exerciseOptions);
-      setTargetMuscleExercises(targetMuscleExerciseData);
+      const targetMuscleExercisesData = await fetchData(`${exerciseDbUrl}/exercises/target/${exerciseDetailData.target}`,exerciseOptions);
+      setTargetMuscleExercises(targetMuscleExercisesData);
 
-      const equipmentExerciseData = await fetchData(`${exerciseDbUrl}/exercises/equipment/${exerciseDetailData.equipment}`,exerciseOptions);
-      setEquipmentExercises(equipmentExerciseData);
+      const equipmentExercisesData = await fetchData(`${exerciseDbUrl}/exercises/equipment/${exerciseDetailData.equipment}`,exerciseOptions);
+      setEquipmentExercises(equipmentExercisesData);
 
     }
     fetchExercisesData();
@@ -41,7 +41,7 @@ const ExerciseDetails = () => {
     <Box>
       <Details ExerciseDetail={exerciseDetail}/>
         <ExerciseVideos exerciseVideos={exerciseVideos} name={exerciseDetail.name}/>
-        <SimilarExercise/>
+        <SimilarExercises targetMuscleExercises={targetMuscleExercises} equipmentExercises={equipmentExercises}/>
     </Box>
   )
 }

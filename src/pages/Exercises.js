@@ -3,6 +3,7 @@ import Pagination  from '@mui/material/Pagination'
 import {Box, Stack, Typography} from '@mui/material';
 import { exerciseOptions, fetchData } from '../utils/fetchData';
 import ExerciseCard from '../components/ExerciseCard';
+import Loader from '../components/Loader';
 
 const Exercises = ({exercises, setExercises, bodyPart}) => {
   const[currentPage, setCurrentPage]=useState(1);
@@ -32,7 +33,7 @@ const Exercises = ({exercises, setExercises, bodyPart}) => {
     };
     fetchExercisesData();
   },[bodyPart]);
-    
+    if(!exercises.length) return <Loader/>;
   return (
     <Box id="exercises"
     sx={{mt:{lg:'110px'}}}
