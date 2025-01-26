@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Box, Button, Stack, Typography } from '@mui/material'
+import {Button, Stack, Typography } from '@mui/material'
 
 const ExerciseCard = ({exercise}) => {
   return (
@@ -14,7 +14,7 @@ const ExerciseCard = ({exercise}) => {
                 {exercise.target}
             </Button>
         </Stack>
-        <Typography ml="21px" color="#000" fontWeight="bold" mt="11px" pb="10px" textTransform="capitalize" fontSize="24px">
+        <Typography ml="21px" color="#000" fontWeight="500" mt="11px" pb="10px" textTransform="capitalize" fontSize="20px">
             {exercise.name}
         </Typography>
     </Link>
