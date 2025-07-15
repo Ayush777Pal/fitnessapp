@@ -1,3 +1,7 @@
+### Visit my site on :-
+
+https://ayushfitnessapp.netlify.app/
+
 # Fitness App
 This is a React fitness web app that also contains firebase google authentication for SignIn and SignOut this app contains two main portion one is Home and other is Exercise portion.This web app is fully responsive that uses well tools such as:-React js, Rapid api for youtube videos and fetching of exercises from db exercise api from https://rapidapi.com
 ## Home
@@ -28,8 +32,5 @@ Once clicking on any execises in showing result section brings user to exercise 
 
 ![WhatsApp Image 2025-01-26 at 10 54 46 PM](https://github.com/user-attachments/assets/7c6b05a8-0c7f-4ce4-a28b-0f3888710aca)
 
-### Visit my site on :-
-
-https://ayushfitnessapp.netlify.app/
 
 ## Thank You 😊
